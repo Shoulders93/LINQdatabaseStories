@@ -69,11 +69,6 @@ namespace DatabaseFirstLINQ
                 Console.WriteLine(product.Name);
             }
 
-
-
-            //    var product = _context.Products;
-            //    Console.WriteLine(product);
-            //
             }
 
             private void ProblemFour()
