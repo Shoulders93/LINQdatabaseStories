@@ -19,9 +19,9 @@ namespace DatabaseFirstLINQ
             //ProblemTwo();
             //ProblemThree();
             //ProblemFour();
-            //ProblemFive();
+            ProblemFive();
             //ProblemSix();
-            ProblemSeven();
+            //ProblemSeven();
             //ProblemEight();
             //ProblemNine();
             //ProblemTen();
@@ -100,13 +100,13 @@ namespace DatabaseFirstLINQ
 
             //var olderUser = _context.Users.Where(u => u.RegistrationDate <= 01/01/2016);
 
-            DateTime cutoffDate = new DateTime(2016, 01, 01);
-            var usersInRole = _context.UserRoles.Where(u => u.Role.RoleName == "Employee").Select(u => u.User.Id);
-            var userOnBoard = _context.Users.Include(m => m.User.RegistrationDate < cutoffDate);
-
-            var earlyUsers = user.Where(r => r.RegistrationDate < cutoffDate);
-
-            Console.WriteLine(userOnBoard);
+            //var usersInRole = _context.UserRoles.Where(u => u.Role.RoleName == "Employee").Select(u => u.User.Id);
+            DateTime cutOffDate = new DateTime(2016, 01, 01);
+            var userOnBoard = _context.Users.Where(u => u.RegistrationDate < cutOffDate).ToList();
+            foreach (var user in userOnBoard)
+            {
+                Console.WriteLine(user.Email);
+            }
 
         }
 
