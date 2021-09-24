@@ -23,8 +23,8 @@ namespace DatabaseFirstLINQ
             //ProblemSix();
             //ProblemSeven();
             //ProblemEight();
-            //ProblemNine();
-            ProblemTen();
+            ProblemNine();
+            //ProblemTen();
             //ProblemEleven();
             //ProblemTwelve();
             //ProblemThirteen();
@@ -95,8 +95,10 @@ namespace DatabaseFirstLINQ
 
         private void ProblemFive()
             {
-                // Write a LINQ query that gets all of the users who registered BEFORE 2016
-                // Then print each user's email and registration date to the console.
+            // Write a LINQ query that gets all of the users who registered BEFORE 2016
+            // Then print each user's email and registration date to the console.
+
+            //var olderUser = _context.Users.Where(u => u.RegistrationDate <= 01 / 01 / 2016);
 
             }
 
@@ -129,9 +131,12 @@ namespace DatabaseFirstLINQ
 
             private void ProblemNine()
             {
-                // Write a LINQ query that retreives all of the products in the shopping cart of the user who has the email "oda@gmail.com" and returns the sum of all of the products prices.
-                // HINT: End of query will be: .Select(sc => sc.Product.Price).Sum();
-                // Then print the total of the shopping cart to the console.
+            // Write a LINQ query that retreives all of the products in the shopping cart of the user who has the email "oda@gmail.com" and returns the sum of all of the products prices.
+            // HINT: End of query will be: .Select(sc => sc.Product.Price).Sum();
+            // Then print the total of the shopping cart to the console.
+
+            var sumProducts = _context.ShoppingCarts.Include(sc => sc.Product).Where(u => u.User.Email == "oda@gmail.com").Select(sc => sc.Product.Price).Sum();
+            Console.WriteLine($"Cart Total: {sumProducts}");
 
             }
 
