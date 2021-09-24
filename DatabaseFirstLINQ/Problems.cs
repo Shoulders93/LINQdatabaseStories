@@ -33,7 +33,7 @@ namespace DatabaseFirstLINQ
             //ProblemFifteen();
             //ProblemSixteen();
             //ProblemSeventeen();
-            //ProblemEighteen();
+            ProblemEighteen();
             //ProblemNineteen();
             ProblemTwenty();
         }
@@ -245,15 +245,17 @@ namespace DatabaseFirstLINQ
 
             private void ProblemSixteen()
             {
-                // Update the price of the product you created to something different using LINQ.
-
-            }
+            // Update the price of the product you created to something different using LINQ.
+                var productPriceUpdate = _context.Products.Where(u => u.Id == 8).SingleOrDefault();
+                productPriceUpdate.Price = 500;
+                _context.Products.Update(productPriceUpdate);
+                _context.SaveChanges();
+        }
 
             private void ProblemSeventeen()
             {
                 // Change the role of the user we created to "Employee"
                 // HINT: You need to delete the existing role relationship and then create a new UserRole object and add it to the UserRoles table
-                // See problem eighteen as an example of removing a role relationship
                 var userRole = _context.UserRoles.Where(ur => ur.User.Email == "mike@gmail.com").SingleOrDefault();
                 _context.UserRoles.Remove(userRole);
                 UserRole newUserRole = new UserRole()
@@ -280,9 +282,22 @@ namespace DatabaseFirstLINQ
     
 
 
+<<<<<<< HEAD
+=======
+            private void ProblemEighteen()
+            {
+            // Delete the role relationship from the user who has the email "oda@gmail.com" using LINQ.
+            // See problem Seventeen as an example of removing a role relationship
+
+                var userRole = _context.UserRoles.Where(ur => ur.User.Email == "oda@gmail.com").SingleOrDefault();
+                _context.UserRoles.Remove(userRole);
+                _context.SaveChanges();
+
+        }
+>>>>>>> 0fffe36a4850860692f5b5e1ffabe0c688fc0e43
 
 
-            private void ProblemNineteen()
+        private void ProblemNineteen()
             {
                 // Delete all of the product relationships to the user with the email "oda@gmail.com" in the ShoppingCart table using LINQ.
                 // HINT: Loop
