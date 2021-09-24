@@ -21,9 +21,9 @@ namespace DatabaseFirstLINQ
             //ProblemFour();
             //ProblemFive();
             //ProblemSix();
-            //ProblemSeven();
+            ProblemSeven();
             //ProblemEight();
-            ProblemNine();
+            //ProblemNine();
             //ProblemTen();
             //ProblemEleven();
             //ProblemTwelve();
@@ -77,8 +77,8 @@ namespace DatabaseFirstLINQ
             // Write a LINQ query that gets each product that contains an "s" in the products name.
             // Then print the name of each product from the above query to the console.
 
-            var products = _context.Products;
-            //    if (products.Contains('s'))
+            //var products = _context.Products;
+            //if (products.Contains('s'))
             //{
             //    Console.WriteLine(product.Name);
             //}
@@ -98,9 +98,17 @@ namespace DatabaseFirstLINQ
             // Write a LINQ query that gets all of the users who registered BEFORE 2016
             // Then print each user's email and registration date to the console.
 
-            //var olderUser = _context.Users.Where(u => u.RegistrationDate <= 01 / 01 / 2016);
+            //var olderUser = _context.Users.Where(u => u.RegistrationDate <= 01/01/2016);
 
-            }
+            DateTime cutoffDate = new DateTime(2016, 01, 01);
+            var usersInRole = _context.UserRoles.Where(u => u.Role.RoleName == "Employee").Select(u => u.User.Id);
+            var userOnBoard = _context.Users.Include(m => m.User.RegistrationDate < cutoffDate);
+
+            var earlyUsers = user.Where(r => r.RegistrationDate < cutoffDate);
+
+            Console.WriteLine(userOnBoard);
+
+        }
 
             private void ProblemSix()
             {
