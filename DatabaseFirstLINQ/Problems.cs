@@ -29,13 +29,13 @@ namespace DatabaseFirstLINQ
             //ProblemEleven();
             //ProblemTwelve();
             //ProblemThirteen();
-            ProblemFourteen();
+            //ProblemFourteen();
             //ProblemFifteen();
             //ProblemSixteen();
             //ProblemSeventeen();
             //ProblemEighteen();
             //ProblemNineteen();
-            //ProblemTwenty();
+            ProblemTwenty();
         }
 
         // <><><><><><><><> R Actions (Read) <><><><><><><><><>
@@ -265,13 +265,22 @@ namespace DatabaseFirstLINQ
                 _context.SaveChanges();
             }
 
-            // <><> D Actions (Delete) <><>
+        // <><> D Actions (Delete) <><>
 
-            private void ProblemEighteen()
-            {
-                // Delete the role relationship from the user who has the email "oda@gmail.com" using LINQ.
+        private void ProblemEighteen()
+        {
+            // Delete the role relationship from the user who has the email "oda@gmail.com" using LINQ.
 
-            }
+            var userRole = _context.UserRoles.Where(ur => ur.User.Email == "oda@gmail.com").SingleOrDefault();
+            _context.UserRoles.Remove(userRole);
+            _context.SaveChanges();
+        }
+
+
+    
+
+
+
 
             private void ProblemNineteen()
             {
@@ -285,15 +294,22 @@ namespace DatabaseFirstLINQ
                 _context.SaveChanges();
             }
 
-            private void ProblemTwenty()
+        private void ProblemTwenty()
+        {
+            // Delete the user with the email "oda@gmail.com" from the Users table using LINQ.
+
+            var removeUser = _context.Users.Where(u => u.Email == "oda@gmail.com");
+
+            foreach (User userToRemove in removeUser)
             {
-                // Delete the user with the email "oda@gmail.com" from the Users table using LINQ.
-
+                _context.Users.Remove(userToRemove);
             }
+            _context.SaveChanges();
+        }
 
-            // <><><><><><><><> BONUS PROBLEMS <><><><><><><><><>
+        // <><><><><><><><> BONUS PROBLEMS <><><><><><><><><>
 
-            private void BonusOne()
+        private void BonusOne()
             {
                 // Prompt the user to enter in an email and password through the console.
                 // Take the email and password and check if the there is a person that matches that combination.
