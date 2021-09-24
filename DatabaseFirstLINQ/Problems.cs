@@ -2,6 +2,7 @@
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using DatabaseFirstLINQ.Models;
+using System.Collections.Generic;
 
 namespace DatabaseFirstLINQ
 {
@@ -22,7 +23,7 @@ namespace DatabaseFirstLINQ
             //ProblemFive();
             //ProblemSix();
             //ProblemSeven();
-            //ProblemEight();
+            ProblemEight();
             //ProblemNine();
             //ProblemTen();
             //ProblemEleven();
@@ -76,9 +77,12 @@ namespace DatabaseFirstLINQ
 
             // Write a LINQ query that gets each product that contains an "s" in the products name.
             // Then print the name of each product from the above query to the console.
+            string name = "David";
+            bool containsLetter = name.Contains("e");
 
-            var filterProductName = _context.Products.Where(p => p.Name);
-            foreach (var product in filterProductName.Length)
+
+            var filterProductName = _context.Products.Where(p => p.Name.Contains("s"));
+            foreach (var product in filterProductName)
             {
                 Console.WriteLine(product.Name);
             }
@@ -133,9 +137,9 @@ namespace DatabaseFirstLINQ
             // Then print the product's name, price, and quantity to the console.
 
             var customerProducts = _context.ShoppingCarts.Include(sc => sc.Product).Where(u => u.User.Email == "afton@gmail.com");
-            foreach (var product in Product)
+            foreach (var product in customerProducts)
             {
-                Console.WriteLine(customerProducts)
+                Console.WriteLine(customerProducts);
             }
 
             }
@@ -156,7 +160,7 @@ namespace DatabaseFirstLINQ
             // Write a LINQ query that retreives all of the products in the shopping cart of users who have the role of "Employee".
             // Then print the user's email as well as the product's name, price, and quantity to the console.
 
-            var usersInRole = _context.UserRoles.Where(u => u.Role.RoleName == "Employee").Select(u => u.User.Id);
+            var usersInRole = _context.UserRoles.Where(ur => ur.Role.RoleName == "Employee").Select(u => u.User.Id);
             var userShoppingCartProducts = _context.ShoppingCarts.Include(sc => sc.Product).Include(sc => sc.User).Where(sc => usersInRole.Contains(sc.UserId));
 
             foreach (var shoppingCart in userShoppingCartProducts)
